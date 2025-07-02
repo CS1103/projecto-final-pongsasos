@@ -4,7 +4,7 @@
 
 ### **Descripción**
 
-> Ejemplo: Implementación de una red neuronal multicapa en C++ para clasificación de dígitos manuscritos.
+> Implementación de un juego Pong en C++ con paddle controlado por una red neuronal.
 
 ### Contenidos
 
@@ -22,17 +22,14 @@
 
 ### Datos generales
 
-* **Tema**: Redes Neuronales en AI
-* **Grupo**: `group_3_custom_name`
+* **Tema**: Juego Pong con paddle IA con Redes Neuronales en C++
+* **Grupo**: `pongsasos`
 * **Integrantes**:
 
-  * Alumno A – 209900001 (Responsable de investigación teórica)
-  * Alumno B – 209900002 (Desarrollo de la arquitectura)
-  * Alumno C – 209900003 (Implementación del modelo)
-  * Alumno D – 209900004 (Pruebas y benchmarking)
-  * Alumno E – 209900005 (Documentación y demo)
-
-> *Nota: Reemplazar nombres y roles reales.*
+  * Saldarriaga Núñez, Annemarie Alejandra – 202410265 ()
+  * Bonilla Sarmiento, Martin Jesús – 202410303 ()
+  * Lazón Meza, María Fernanda – 202410320 ()
+  * Anaya Manzo, Matias Javier – 202410238 ()
 
 ---
 
@@ -43,19 +40,20 @@
 
    * CMake 3.18+
    * Eigen 3.4
-   * \[Otra librería opcional]
+   * Raylib
 3. **Instalación**:
 
    ```bash
-   git clone https://github.com/EJEMPLO/proyecto-final.git
-   cd proyecto-final
+   git clone https://github.com/CS1103/projecto-final-pongsasos.git
+   cd pongsasos
    mkdir build && cd build
    cmake ..
    make
+   brew install raylib # En macOS
+   git clone https://github.com/microsoft/vcpkg.git # En Windows
+   .\vcpkg\bootstrap-vcpkg.bat
+   .\vcpkg\vcpkg install raylib
    ```
-
-> *Ejemplo de repositorio y comandos, ajustar según proyecto.*
-
 ---
 
 ### 1. Investigación teórica
@@ -77,13 +75,14 @@
 * **Estructura de carpetas (ejemplo)**:
 
   ```
-  proyecto-final/
-  ├── src/
-  │   ├── layers/
-  │   ├── optimizers/
-  │   └── main.cpp
-  ├── tests/
-  └── docs/
+  pongsasos/
+  ├── nn/
+  │   ├── 
+  │   ├── 
+  │   └── 
+  ├── main.cpp
+  ├── README.md
+  └── CMakeLists.txt
   ```
 
 #### 2.2 Manual de uso y casos de prueba
