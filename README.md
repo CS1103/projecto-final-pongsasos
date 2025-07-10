@@ -57,14 +57,14 @@
    
    # Windows (instala raylib para MSVC de 64 bits)
    ./bootstrap-vcpkg.bat
-   .\vcpkg\vcpkg install raylib:x64-windows 
+   ./vcpkg/vcpkg install raylib:x64-windows 
    
    # Linux (instala raylib para tripleta nativa)
    ./bootstrap-vcpkg.sh
    ./vcpkg/vcpkg install raylib
    
    # Solo una vez por sistema
-   .\vcpkg\vcpkg integrate install
+   ./vcpkg/vcpkg integrate install
    ```
 Luego de instalar la librería Raylib, se es necesario una última configuración:
    * Para CLion:
@@ -77,9 +77,10 @@ Luego de instalar la librería Raylib, se es necesario una última configuració
      * En `.vscode/settings.json`, agregar:
      ```json
      "cmake.configureArgs": [
-     "-DCMAKE_TOOLCHAIN_FILE=${workspaceFolder}/vcpkg/scripts/buildsystems/vcpkg.cmake
+     "-DCMAKE_TOOLCHAIN_FILE=${workspaceFolder}/vcpkg/scripts/buildsystems/vcpkg.cmake"
      ]
      ```
+     
 - Extra: Para ejecución manual
 ````bash
 mkdir build
@@ -92,11 +93,11 @@ cmake --build .
 ### 1. Investigación teórica
 
 * **Objetivo**: Explorar fundamentos y arquitecturas de redes neuronales.
-* **Contenido de ejemplo**:
+* **Contenido:**:
 
   1. Historia y evolución de las NNs.
-  2. Principales arquitecturas: MLP, CNN, RNN.
-  3. Algoritmos de entrenamiento: backpropagation, optimizadores.
+  2. Algoritmos de entrenamiento: backpropagation, optimizadores, SGD, etc..
+  3. Tipos de funciones de activación.
 
 ---
 
