@@ -26,10 +26,10 @@
 * **Grupo**: `pongsasos`
 * **Integrantes**:
 
-  * Saldarriaga Núñez, Annemarie Alejandra – 202410265 ()
-  * Bonilla Sarmiento, Martin Jesús – 202410303 ()
-  * Lazón Meza, María Fernanda – 202410320 ()
-  * Anaya Manzo, Matias Javier – 202410238 ()
+  * Saldarriaga Núñez, Annemarie Alejandra – 202410265 (Alumno A)
+  * Bonilla Sarmiento, Martin Jesús – 202410303 (Alumno B)
+  * Lazón Meza, María Fernanda – 202410320 (Alumno C)
+  * Anaya Manzo, Matias Javier – 202410238 (Alumno D)
 
 ---
 
@@ -41,19 +41,52 @@
    * CMake 3.18+
    * Eigen 3.4
    * Raylib
-3. **Instalación**:
+3. **IDEs**: CLion, VSCode o similares
+4. **Instalación**:
 
-   ```bash
+   ```bash 
    git clone https://github.com/CS1103/projecto-final-pongsasos.git
    cd pongsasos
-   mkdir build && cd build
-   cmake ..
-   make
+   
+   # Para macOS solo se ejecuta el siguiente comando
    brew install raylib # En macOS
-   git clone https://github.com/microsoft/vcpkg.git # En Windows
-   .\vcpkg\bootstrap-vcpkg.bat
-   .\vcpkg\vcpkg install raylib
+   
+   # Instalar raylib para Window y Linux
+   git clone https://github.com/microsoft/vcpkg.git
+   cd vcpkg
+   
+   # Windows (instala raylib para MSVC de 64 bits)
+   ./bootstrap-vcpkg.bat
+   .\vcpkg\vcpkg install raylib:x64-windows 
+   
+   # Linux (instala raylib para tripleta nativa)
+   ./bootstrap-vcpkg.sh
+   ./vcpkg/vcpkg install raylib
+   
+   # Solo una vez por sistema
+   .\vcpkg\vcpkg integrate install
    ```
+Luego de instalar la librería Raylib, se es necesario una última configuración:
+   * Para CLion:
+     * Ve a: `File > Settings > Build, Execution, Deployment > CMake`
+     * Añadir la siguiente línea en **CMake options**:
+      ```ini
+        -DCMAKE_TOOLCHAIN_FILE=./vcpkg/scripts/buildsystems/vcpkg.cmake
+     ```
+   * Para VSCode (usando la extensión CMake Tools):
+     * En `.vscode/settings.json`, agregar:
+     ```json
+     "cmake.configureArgs": [
+     "-DCMAKE_TOOLCHAIN_FILE=${workspaceFolder}/vcpkg/scripts/buildsystems/vcpkg.cmake
+     ]
+     ```
+- Extra: Para ejecución manual
+````bash
+mkdir build
+cd build
+cmake .. -DCMAKE_TOOLCHAIN_FILE=../vcpkg/scripts/buildsystems/vcpkg.cmake
+cmake --build .
+````
 ---
 
 ### 1. Investigación teórica
@@ -71,30 +104,26 @@
 
 #### 2.1 Arquitectura de la solución
 
-* **Patrones de diseño**: ejemplo: Factory para capas, Strategy para optimizadores.
-* **Estructura de carpetas (ejemplo)**:
+* **Patrones de diseño**: ejemplo: No se he utilizado ningún patrón de diseño.
+* **Estructura de carpetas**:
 
   ```
   pongsasos/
   ├── nn/
-  │   ├── 
-  │   ├── 
-  │   └── 
+  │   ├── network.h
+  │   ├── tensor.h
   ├── main.cpp
+  ├── test_neural_network.cpp
   ├── README.md
   └── CMakeLists.txt
   ```
 
 #### 2.2 Manual de uso y casos de prueba
 
-* **Cómo ejecutar**: `./build/neural_net_demo input.csv output.csv`
+* **Cómo ejecutar** (en Git Bash): `cd ./ruta_al_proyecto/cmake-build-debug && ./nombre_del_proyecto`
 * **Casos de prueba**:
 
-  * Test unitario de capa densa.
-  * Test de función de activación ReLU.
-  * Test de convergencia en dataset de ejemplo.
-
-> *Personalizar rutas, comandos y casos reales.*
+  * Test unitario para la función de pérdida de la red.
 
 ---
 
@@ -103,9 +132,11 @@
 > **Demo de ejemplo**: Video/demo alojado en `docs/demo.mp4`.
 > Pasos:
 >
-> 1. Preparar datos de entrenamiento (formato CSV).
-> 2. Ejecutar comando de entrenamiento.
-> 3. Evaluar resultados con script de validación.
+> 1. Preparar datos de entrenamiento.
+> 2. Presionar tecla 'T' para empezar el entrenamiento'.
+> 3. Presionar tecla 'F' para acelerar el entrenamiento.
+> 4. La red neuronal se entrena con los datos.
+> 5. El AIPaddle está lista para etrenar.
 
 ---
 
@@ -113,31 +144,28 @@
 
 * **Métricas de ejemplo**:
 
-  * Iteraciones: 1000 épocas.
-  * Tiempo total de entrenamiento: 2m30s.
-  * Precisión final: 92.5%.
+  * Iteraciones: 100  épocas.
+  * Tiempo total de entrenamiento: 12 min.
 * **Ventajas/Desventajas**:
 
-  * * Código ligero y dependencias mínimas.
+  * Código ligero y dependencias mínimas.
   * – Sin paralelización, rendimiento limitado.
 * **Mejoras futuras**:
 
-  * Uso de BLAS para multiplicaciones (Justificación).
-  * Paralelizar entrenamiento por lotes (Justificación).
+  * Uso de CUDA para interfaz gráfica (Justificación).
+  * Paralelizar entrenamiento por lotes (Esto ayudaría a disminuir el tiempo de entrenamiento).
 
 ---
 
 ### 5. Trabajo en equipo
 
-| Tarea                     | Miembro  | Rol                       |
-| ------------------------- | -------- | ------------------------- |
-| Investigación teórica     | Alumno A | Documentar bases teóricas |
-| Diseño de la arquitectura | Alumno B | UML y esquemas de clases  |
-| Implementación del modelo | Alumno C | Código C++ de la NN       |
-| Pruebas y benchmarking    | Alumno D | Generación de métricas    |
-| Documentación y demo      | Alumno E | Tutorial y video demo     |
-
-> *Actualizar con tareas y nombres reales.*
+| Tarea                                 | Miembro(s)            | 
+|---------------------------------------|-----------------------|
+| Investigación teórica                 | Alumno D              |
+| Implementación de la interfaz gráfica | Alumno A y C          |
+| Implementación de AIPaddle            | Alumno B              |
+| Video de presentación del proyecto    | Todos los integrantes |
+| Edición del video                     | Alumno B              |
 
 ---
 
@@ -145,14 +173,20 @@
 
 * **Logros**: Implementar NN desde cero, validar en dataset de ejemplo.
 * **Evaluación**: Calidad y rendimiento adecuados para propósito académico.
-* **Aprendizajes**: Profundización en backpropagation y optimización.
+* **Aprendizajes**: Profundización en backpropagation, optimización e implementación de interfaz gráfica con librería Raylib.
 * **Recomendaciones**: Escalar a datasets más grandes y optimizar memoria.
 
 ---
 
 ### 7. Bibliografía
 
-> *Actualizar con bibliografia utilizada, al menos 4 referencias bibliograficas y usando formato IEEE de referencias bibliograficas.*
+> [1] T. Esmael, “Activation Functions in Neural Networks,” International Journal of Engineering and Advanced Scientific Technology (IJEAST), vol. 4, no. 12, pp. 310–316, 2022. [En línea]. Disponible en: https://d1wqtxts1xzle7.cloudfront.net/89662883/310-316_Tesma412_IJEAST-libre.pdf
+> 
+> [2] M. Nielsen, Neural Networks and Deep Learning, cap. 1. [En línea]. Disponible en: https://neuralnetworksanddeeplearning.com/chap1.html
+> 
+> [3] S. Haykin, Neural Networks and Learning Machines, 3rd ed. Upper Saddle River, NJ, USA: Pearson Education, 2009.
+> 
+> [4] C. M. Bishop, Pattern Recognition and Machine Learning. New York, NY, USA: Springer, 2006.
 
 ---
 
