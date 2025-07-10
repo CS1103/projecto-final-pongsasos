@@ -285,7 +285,7 @@ void DrawUI() {
 }
 
 int main() {
-    InitWindow(screen_width, screen_height, "PONG AI - Neural Network (Mejorado)");
+    InitWindow(screen_width, screen_height, "PONG AI");
     SetTargetFPS(60);
 
     // Inicializar pelota
@@ -309,7 +309,7 @@ int main() {
     ai_paddle.y = screen_height/2 - ai_paddle.height/2;
     ai_paddle.speed = 6;
 
-    cout << "=== PONG AI CON REDES NEURONALES (MEJORADO) ===" << endl;
+    cout << "=== PONG AI CON REDES NEURONALES ===" << endl;
     cout << "Presiona 'T' para entrenar la IA" << endl;
     cout << "Usa las flechas UP/DOWN para jugar" << endl;
     cout << "Presiona '+/-' para ajustar sensibilidad del bot" << endl;
